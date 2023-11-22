@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-learn-dev-160947-authRole",
+      "UnauthRoleArn": "arn:aws:iam::961303703680:role/amplify-learn-dev-160947-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::961303703680:role/amplify-learn-dev-160947-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-learn-dev-160947-deployment",
+      "UnauthRoleName": "amplify-learn-dev-160947-unauthRole",
+      "StackName": "amplify-learn-dev-160947",
+      "StackId": "arn:aws:cloudformation:us-west-2:961303703680:stack/amplify-learn-dev-160947/58e6dd70-8845-11ee-a835-02fcc18ba6a1",
+      "AmplifyAppId": "d3nkxn370x1yfr"
+    },
+    "categories": {
+      "function": {
+        "StreamCanaryLambda": {
+          "deploymentBucketName": "amplify-learn-dev-160947-deployment",
+          "s3Key": "amplify-builds/StreamCanaryLambda-4d634971734a6a48774e-build.zip"
+        }
+      }
+    }
+  }
+}

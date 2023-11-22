@@ -1,0 +1,28 @@
+{
+  "api": {},
+  "function": {
+    "StreamCanaryLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_StreamCanaryLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "StreamCanaryLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_StreamCanaryLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "StreamCanaryLambda"
+        }
+      ]
+    }
+  }
+}
