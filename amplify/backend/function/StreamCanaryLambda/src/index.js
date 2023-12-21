@@ -1,27 +1,53 @@
-exports.handler = awslambda.streamifyResponse(async (event, responseStream) => {
-  const strings = [
-    "This",
-    "function",
-    "is",
-    "streaming",
-    "the",
-    "response",
-    "back",
-    "and",
-    "now",
-    "it",
-    "is",
-    "finished!"
-  ];
+import { OpenAI } from "openai";
+import fs from "fs";
 
-  // Writes a string back to the caller every 500ms
-  for (let s in strings) {
-    responseStream.write(strings[s]);
-    await new Promise(r => setTimeout(r, 500));
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const baseHandler = async (event, responseStream) => {
+  // responseStream.setContentType("text/event-stream");
+
+  const payload = {
+    model: "gpt-3.5-turbo-1106",
+    messages: [
+      {
+        "role": "user",
+        // "content": "请分100行输出100个英文字符"
+        "content": "请100字介绍你自己"
+      }
+    ],
+    temperature: 0,
+    max_tokens: 1500,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0.6,
+    stream: true
   }
 
-  // When we are done writing to the stream, we need to call
-  // `.end()` so that node knows that no more bytes will be written
-  // to the stream
-  responseStream.end();
-});
+  const openAIResp = await openai.chat.completions.create(payload);
+
+  for await (const chunk of openAIResp) {
+    console.log("[Chunk]", chunk.choices[0]?.delta?.content);
+    const content = chunk.choices[0]?.delta?.content
+    if (content) {
+      const isOk = responseStream.write(content);
+      if (!isOk) {
+        console.log("[StreamedPlanParseLambda] responseStream write failed.");
+      }
+    } else {
+      responseStream.close();
+    }
+  }
+
+  return responseStream;
+}
+
+// const handler = awslambda.streamifyResponse(baseHandler);
+// export default handler;
+
+if (process.env.SJDEAK) {
+  baseHandler({}, fs.createWriteStream('file.txt')).then((stream) => {
+    console.log(stream);
+  });
+}

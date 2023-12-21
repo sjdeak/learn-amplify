@@ -1,4 +1,22 @@
 export type AmplifyDependentResourcesAttributes = {
+  "api": {
+    "learn": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string",
+      "GraphQLAPIKeyOutput": "string"
+    }
+  },
+  "auth": {
+    "learn696d337a": {
+      "AppClientID": "string",
+      "AppClientIDWeb": "string",
+      "IdentityPoolId": "string",
+      "IdentityPoolName": "string",
+      "UserPoolArn": "string",
+      "UserPoolId": "string",
+      "UserPoolName": "string"
+    }
+  },
   "function": {
     "StreamCanaryLambda": {
       "Arn": "string",

@@ -15,8 +15,14 @@
       "function": {
         "StreamCanaryLambda": {
           "deploymentBucketName": "amplify-learn-dev-160947-deployment",
-          "s3Key": "amplify-builds/StreamCanaryLambda-4d634971734a6a48774e-build.zip"
+          "s3Key": "amplify-builds/StreamCanaryLambda-712f5675577634486654-build.zip"
         }
+      },
+      "api": {
+        "learn": {}
+      },
+      "auth": {
+        "learn696d337a": {}
       }
     }
   }
